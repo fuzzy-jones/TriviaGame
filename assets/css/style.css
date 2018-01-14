@@ -15,11 +15,15 @@ body {
     padding-bottom: 40px;
 }
 
-.button {
+.start-button {
     background-color: lightblue;
     font-size: 48px;
     font-weight: bold;
     padding: 10px 60px 10px 60px;
     border: 2px solid black;
+}
+
+.game {
+    font-size: 36px;
 }
 
