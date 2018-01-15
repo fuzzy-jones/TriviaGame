@@ -27,3 +27,18 @@ body {
     font-size: 36px;
 }
 
+#timer {
+    padding-bottom: 20px;
+}
+
+#question {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+#choice1, #choice2, #choice3, #choice4 {
+    background-color: lightblue;
+    margin: 5px;
+    border: 2px solid black;
+    width: 90%;
+}

@@ -57,11 +57,12 @@ $(document).ready(function(){
     
     var images = ["<img src=assets/images/sleepy-hollow.gif>", "<img src=assets/images/american-beauty.gif>", "<img src=assets/images/brazil.gif>", "<img src=assets/images/karachi.jpg>", "<img src=assets/images/jupiter-moons.gif>", "<img src=assets/images/peewee.gif>", "<img src=assets/images/kfc-japan.jpg>", "<img src=assets/images/tootsiepop.gif>"];
 
-    var timer = 20;
+    var timer = 25;
     var intervalId;
     var answersRight = 0;
     var answersWrong = 0;
     var unanswered = 0;
+    var questionCounter = questions.length;
 
     // when start is click the button with hide and the game html will show
     $(".start-button").on("click", function() {
@@ -69,15 +70,17 @@ $(document).ready(function(){
         $(".game").show();
         countdown();
         runTimer();
+        gameQuestions();
     });
+
 
     // countdown function for the question timer to run from 20 seconds down to 0
     function countdown() {
         timer--;
         $("#timer").html("Time Left: " + timer);
         if (timer == 0) {
-            // change this to go to next question later
-            alert("Times Up");
+            // change this to go to answer result page later
+            // alert("Times Up");
         }
     };
     // function to decrease the time down by 1 second, will begin to run once start is clicked
@@ -87,14 +90,46 @@ $(document).ready(function(){
 
     // create a function to pick questions and run in game
     function gameQuestions() {
-        for (var i = 0; i < questions.length; i++) {
-        
-        }
+        $("#question").html(questions[0].question);
+        $("#choice1").html(questions[0].choices[0]);
+        $("#choice2").html(questions[0].choices[1]);
+        $("#choice3").html(questions[0].choices[2]);
+        $("#choice4").html(questions[0].choices[3]);
     };
 
-    // console.log(questions[0]);
 
+    // create on click for each of the answer choice buttons
+    $("#choice1").on("click", function() {
+        if ("click" === questions.answer) {
+            console.log("that is correct");
+        } else {
+            console.log("incorrect");
+        }
+    });
 
-    // $(".game").html(images[7]);
+    $("#choice2").on("click", function() {
+        if ("click" === questions.answer) {
+            console.log("that is correct");
+        } else {
+            console.log("incorrect");
+        }
+    });
+
+    $("#choice3").on("click", function() {
+        if ("click" === questions.answer) {
+            console.log("that is correct");
+        } else {
+            console.log("incorrect");
+        }
+    });
+
+    $("#choice4").on("click", function() {
+        if ("click" === questions.answer) {
+            console.log("that is correct");
+        } else {
+            console.log("incorrect");
+        }
+    });
+
 
 });
