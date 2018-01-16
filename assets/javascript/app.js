@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     $(".game").hide();
 
-    var questions = [ {
+    var questionArray = [ {
         // question 1
         question: "Which of the following is NOT a Tim Burton Movie?",
         choices: ["Edward Scissorhands", "Big Fish", "Sleepy Hollow 2", "Beetlejuice"],
@@ -62,7 +62,7 @@ $(document).ready(function(){
     var answersRight = 0;
     var answersWrong = 0;
     var unanswered = 0;
-    var questionCounter = questions.length;
+    var questionCounter = 0;
 
     // when start is click the button with hide and the game html will show
     $(".start-button").on("click", function() {
@@ -74,7 +74,60 @@ $(document).ready(function(){
     });
 
 
-    // countdown function for the question timer to run from 20 seconds down to 0
+    // create a function to pick questions and run in game
+    function gameQuestions() {
+        $("#question").html(questionArray[questionCounter].question);
+        $("#choice1").html(questionArray[questionCounter].choices[0]);
+        $("#choice2").html(questionArray[questionCounter].choices[1]);
+        $("#choice3").html(questionArray[questionCounter].choices[2]);
+        $("#choice4").html(questionArray[questionCounter].choices[3]);
+    };
+
+
+    // create on click for each of the answer choice buttons
+    $("#choice1").on("click", function() {
+        if (questionArray[questionCounter].choices[0] === questionArray[questionCounter].answer) {
+            answersRight++;
+            // questionCounter++;
+            console.log("that is correct");      
+        } else {
+            answersWrong++;
+            console.log("incorrect");
+        };
+    });
+
+    $("#choice2").on("click", function() {
+        if (questionArray[questionCounter].choices[1] === questionArray[questionCounter].answer) {
+            answersRight++;
+            console.log("that is correct");
+        } else {
+            answersWrong++;
+            console.log("incorrect");
+        }
+    });
+
+    $("#choice3").on("click", function() {
+        if (questionArray[questionCounter].choices[2] === questionArray[questionCounter].answer) {
+            answersRight++;
+            console.log("that is correct");
+        } else {
+            answersWrong++;
+            console.log("incorrect");
+        }
+    });
+
+    $("#choice4").on("click", function() {
+        if (questionArray[questionCounter].choices[3] === questionArray[questionCounter].answer) {
+            answersRight++;
+            console.log("that is correct");
+        } else {
+            answersWrong++;
+            console.log("incorrect");
+        }
+    });
+
+
+    // countdown function for the question timer to run from 25 seconds down to 0
     function countdown() {
         timer--;
         $("#timer").html("Time Left: " + timer);
@@ -88,48 +141,6 @@ $(document).ready(function(){
         intervalId = setInterval(countdown, 1000);
     };
 
-    // create a function to pick questions and run in game
-    function gameQuestions() {
-        $("#question").html(questions[0].question);
-        $("#choice1").html(questions[0].choices[0]);
-        $("#choice2").html(questions[0].choices[1]);
-        $("#choice3").html(questions[0].choices[2]);
-        $("#choice4").html(questions[0].choices[3]);
-    };
-
-
-    // create on click for each of the answer choice buttons
-    $("#choice1").on("click", function() {
-        if ("click" === questions.answer) {
-            console.log("that is correct");
-        } else {
-            console.log("incorrect");
-        }
-    });
-
-    $("#choice2").on("click", function() {
-        if ("click" === questions.answer) {
-            console.log("that is correct");
-        } else {
-            console.log("incorrect");
-        }
-    });
-
-    $("#choice3").on("click", function() {
-        if ("click" === questions.answer) {
-            console.log("that is correct");
-        } else {
-            console.log("incorrect");
-        }
-    });
-
-    $("#choice4").on("click", function() {
-        if ("click" === questions.answer) {
-            console.log("that is correct");
-        } else {
-            console.log("incorrect");
-        }
-    });
 
 
 });
