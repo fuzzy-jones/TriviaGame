@@ -12,10 +12,10 @@ $(document).ready(function(){
 
     // hide game page, image page, and end game page before start button is hit
     $(".game").hide();
-    $(".splash-page").hide();
+    $(".image-page").hide();
     $(".end-game").hide();
 
-    // All the questions, choices, and answers built into an array
+    // All the questions, choices, and answers built into a variable array
     var questionArray = [ {
         // question 1
         question: "Which of the following is NOT a Tim Burton Movie?",
@@ -62,6 +62,7 @@ $(document).ready(function(){
     var imageArray = ["<img src=assets/images/sleepy-hollow.gif>", "<img src=assets/images/american-beauty.gif>", "<img src=assets/images/brazil.gif>", "<img src=assets/images/karachi.jpg>", "<img src=assets/images/jupiter-moons.gif>", "<img src=assets/images/peewee.gif>", "<img src=assets/images/kfc-japan.jpg>", "<img src=assets/images/tootsiepop.gif>"];
     var result = ["That is Correct!", "Whoops that's Incorrect!", "Why no Answer???"];
 
+    // global variables
     var timer = 20;
     var intervalId;
     var answersRight = 0;
@@ -70,18 +71,18 @@ $(document).ready(function(){
     var questionCounter = 0;
     var imageCounter = 0;
 
-    // when start is click the button with hide and the game html will show
+    // when start is clicked the button will hide, and the game html will show
     $(".start-button").on("click", function() {
         $(this).remove();
         $(".game").show();
-        $(".splash-page").hide();
+        $(".image-page").hide();
         countdown();
         runTimer();
         gameQuestions();
     });
 
 
-    // create a function to pick questions and run in game
+    // Function to pick questions and run in game from on click above
     function gameQuestions() {
         $("#question").html(questionArray[questionCounter].question);
         $("#choice1").html(questionArray[questionCounter].choices[0]);
@@ -93,42 +94,40 @@ $(document).ready(function(){
     // Image page if user picks right answer
     function imageRight() {
         $(".game").hide();
-        $(".splash-page").show();
-        $("#image").html(imageArray[imageCounter]);
+        $(".image-page").show();
         $("#result").html(result[0]);
-        questionCounter++;
+        $("#image").html(imageArray[imageCounter]);
     };
 
     // Image page if user picks wrong answer
     function imageWrong() {
         $(".game").hide();
-        $(".splash-page").show();
+        $(".image-page").show();
+        $("#result").html(result[1] + "<br>" + "Correct Answer is: " + questionArray[questionCounter].answer);
         $("#image").html(imageArray[imageCounter]);
-        $("#result").html(result[1]);
-        questionCounter++;
     };
 
-    // Image page is timer runs out with no answer
+    // Image page is timer runs out with no answer selected
     function imageNoAnswer() {
         $(".game").hide();
-        $(".splash-page").show();
+        $(".image-page").show();
+        $("#result").html(result[2] + "<br>" + "Correct Answer is: " + questionArray[questionCounter].answer);        
         $("#image").html(imageArray[imageCounter]);
-        $("#result").html(result[2]);
-        questionCounter++;
     };
 
-    // create on click for each of the answer choice buttons, store results, and run image page functions
+
+    // create on click for each of the 4 answer choice buttons, store results, and run image page functions
     $("#choice1").on("click", function() {
         if (questionArray[questionCounter].choices[0] === questionArray[questionCounter].answer) {
             answersRight++;
             imageRight();
-            // questionCounter++;
             console.log("that is correct");      
         } else {
             answersWrong++;
             imageWrong();
             console.log("incorrect");
         };
+        newQuestion();
     });
 
     $("#choice2").on("click", function() {
@@ -141,6 +140,7 @@ $(document).ready(function(){
             imageWrong();
             console.log("incorrect");
         }
+        newQuestion();
     });
 
     $("#choice3").on("click", function() {
@@ -153,6 +153,7 @@ $(document).ready(function(){
             imageWrong();
             console.log("incorrect");
         }
+        newQuestion();
     });
 
     $("#choice4").on("click", function() {
@@ -165,8 +166,17 @@ $(document).ready(function(){
             imageWrong();
             console.log("incorrect");
         }
+        newQuestion();
     });
 
+    // functions to present the next question
+    function newQuestion() {
+        questionCounter++;
+        imageCounter++;
+        gameQuestions();
+        timer = 20;
+    };
+    
 
     // countdown function for the question timer to run from 20 seconds down to 0
     function countdown() {
@@ -176,6 +186,7 @@ $(document).ready(function(){
             unanswered++;
             imageNoAnswer();
         }
+        console.log(timer);
     };
     // function to decrease the time down by 1 second, will begin to run once start is clicked
     function runTimer() {
@@ -183,18 +194,8 @@ $(document).ready(function(){
     };
 
 
-    // functions for right, wrong, and unanswered
-    function rightAnswer() {
-
-    };
-
-    function wrongAnswer() {
-
-    };
-
-    function unanswered() {
-
-    };
-
+   console.log(answersRight);
+   console.log(answersWrong);
+   console.log(unanswered);
 
 });
