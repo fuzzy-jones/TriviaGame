@@ -71,6 +71,7 @@ $(document).ready(function(){
     var questionCounter = 0;
     var imageCounter = 0;
 
+
     // when start is clicked the button will hide, and the game html will show
     $(".start-button").on("click", function() {
         $(this).remove();
@@ -81,7 +82,6 @@ $(document).ready(function(){
         gameQuestions();
     });
 
-
     // Function to pick questions and run in game from on click above
     function gameQuestions() {
         $("#question").html(questionArray[questionCounter].question);
@@ -91,12 +91,25 @@ $(document).ready(function(){
         $("#choice4").html(questionArray[questionCounter].choices[3]);
     };
 
+    // functions to present the next question
+    function newQuestion() {
+        questionCounter++;
+        imageCounter++;
+        $(".game").show();
+        gameQuestions();
+        $(".image-page").hide();
+        timer = 20;
+    };
+
     // Image page if user picks right answer
     function imageRight() {
         $(".game").hide();
         $(".image-page").show();
         $("#result").html(result[0]);
         $("#image").html(imageArray[imageCounter]);
+        timer = 24;
+        setTimeout(newQuestion, 4000);
+        setTimeout(endGame, 4000);        
     };
 
     // Image page if user picks wrong answer
@@ -105,6 +118,8 @@ $(document).ready(function(){
         $(".image-page").show();
         $("#result").html(result[1] + "<br>" + "Correct Answer is: " + questionArray[questionCounter].answer);
         $("#image").html(imageArray[imageCounter]);
+        timer = 24;
+        setTimeout(newQuestion, 4000);
     };
 
     // Image page is timer runs out with no answer selected
@@ -113,70 +128,60 @@ $(document).ready(function(){
         $(".image-page").show();
         $("#result").html(result[2] + "<br>" + "Correct Answer is: " + questionArray[questionCounter].answer);        
         $("#image").html(imageArray[imageCounter]);
+        timer = 24;
+        setTimeout(newQuestion, 4000);
     };
 
-
+       
     // create on click for each of the 4 answer choice buttons, store results, and run image page functions
     $("#choice1").on("click", function() {
         if (questionArray[questionCounter].choices[0] === questionArray[questionCounter].answer) {
             answersRight++;
             imageRight();
-            console.log("that is correct");      
         } else {
             answersWrong++;
             imageWrong();
-            console.log("incorrect");
         };
-        newQuestion();
     });
 
     $("#choice2").on("click", function() {
         if (questionArray[questionCounter].choices[1] === questionArray[questionCounter].answer) {
             answersRight++;
             imageRight();
-            console.log("that is correct");
         } else {
             answersWrong++;
             imageWrong();
-            console.log("incorrect");
         }
-        newQuestion();
     });
 
     $("#choice3").on("click", function() {
         if (questionArray[questionCounter].choices[2] === questionArray[questionCounter].answer) {
             answersRight++;
             imageRight();
-            console.log("that is correct");
         } else {
             answersWrong++;
             imageWrong();
-            console.log("incorrect");
         }
-        newQuestion();
     });
 
     $("#choice4").on("click", function() {
         if (questionArray[questionCounter].choices[3] === questionArray[questionCounter].answer) {
             answersRight++;
             imageRight();
-            console.log("that is correct");
         } else {
             answersWrong++;
             imageWrong();
-            console.log("incorrect");
         }
-        newQuestion();
     });
 
-    // functions to present the next question
-    function newQuestion() {
-        questionCounter++;
-        imageCounter++;
-        gameQuestions();
-        timer = 20;
+    function endGame() {
+        if (questionCounter > 7) {
+            $(".game").hide();
+            $(".image-page").hide();
+            $(".end-game").show();
+            $("#score").html("Correct Answers: " + answersRight + "<br>" + "Incorrect Answers: " + answersWrong + "<br>" + "Unanswered: " + unanswered);
+        }
     };
-    
 
     // countdown function for the question timer to run from 20 seconds down to 0
     function countdown() {
@@ -188,14 +193,11 @@ $(document).ready(function(){
         }
         console.log(timer);
     };
+
     // function to decrease the time down by 1 second, will begin to run once start is clicked
     function runTimer() {
         intervalId = setInterval(countdown, 1000);
     };
 
-
-   console.log(answersRight);
-   console.log(answersWrong);
-   console.log(unanswered);
 
 });
