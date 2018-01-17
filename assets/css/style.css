@@ -43,9 +43,15 @@ body {
     padding-bottom: 10px;
 }
 
-#choice1, #choice2, #choice3, #choice4 {
+#choice1, #choice2, #choice3, #choice4, #reset {
     background-color: lightcyan;
     margin: 5px;
     border: 2px solid black;
     width: 90%;
+}
+
+#result {
+    font-size: 36px;
+    font-weight: bold;
+    padding-bottom: 20px;
 }
