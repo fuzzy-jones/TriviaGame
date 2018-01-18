@@ -93,12 +93,16 @@ $(document).ready(function(){
 
     // functions to present the next question after image and correct answer is displayed
     function newQuestion() {
-        questionCounter++;
-        imageCounter++;
-        $(".game").show();
-        gameQuestions();
-        $(".image-page").hide();
-        timer = 20;
+        if (questionCounter < 7) {
+            questionCounter++;
+            imageCounter++;
+            $(".game").show();
+            gameQuestions();
+            $(".image-page").hide();
+            timer = 20;
+        } else {
+            questionCounter++;
+        }
     };
 
     // Image page if user picks right answer
@@ -190,7 +194,6 @@ $(document).ready(function(){
 
     // reset button to start game over on the end game page
     $("#reset").on("click", function() {
-        $(this).remove();
         $(".game").show();
         $(".end-game").hide();
         timer = 20;
