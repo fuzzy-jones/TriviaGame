@@ -5,8 +5,8 @@
 // build in a timer and set timeout for time limit to answer question
 // display image or gif of correct answer after each question
     // have image only display for certain amount of time before it moves onto next question
-// after all 8 questions are answered  display results of the game
-// have start over button to restart game (not reload page)
+// after all 8 questions are answered display results of the game
+// have a start over reset button to restart game (not reload page)
 
 $(document).ready(function(){
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
         answer: "Big",
     } , {
         // question 7
-        question: "What is the traditional Christmas meal of Japan?",
+        question: "What is the most popular Christmas meal of Japan?",
         choices: ["KFC", "Sushi", "Miso Soup", "Dried Octopus"],
         answer: "KFC",
     } , {
@@ -72,7 +72,7 @@ $(document).ready(function(){
     var imageCounter = 0;
 
 
-    // when start is clicked the button will hide, and the game html will show
+    // when start is clicked the button will remove, and the game html will show
     $(".start-button").on("click", function() {
         $(this).remove();
         $(".game").show();
@@ -82,7 +82,7 @@ $(document).ready(function(){
         gameQuestions();
     });
 
-    // Function to pick questions and run in game from on click above
+    // Function to pick questions and run in game from on click above, and assign counter to question array
     function gameQuestions() {
         $("#question").html(questionArray[questionCounter].question);
         $("#choice1").html(questionArray[questionCounter].choices[0]);
@@ -91,7 +91,7 @@ $(document).ready(function(){
         $("#choice4").html(questionArray[questionCounter].choices[3]);
     };
 
-    // functions to present the next question
+    // functions to present the next question after image and correct answer is displayed
     function newQuestion() {
         questionCounter++;
         imageCounter++;
@@ -176,17 +176,19 @@ $(document).ready(function(){
         }
     });
 
-    // final results of the game
+    // final results of the game, will show after timeout of final image page
     function endGame() {
         if (questionCounter > 7) {
             $(".game").hide();
             $(".image-page").hide();
             $(".end-game").show();
             $("#score").html("Correct Answers: " + answersRight + "<br>" + "Incorrect Answers: " + answersWrong + "<br>" + "Unanswered: " + unanswered);
+            // couldnt get timer to return and stop on endgame, so I set an excessively long timer to avoid weirdness happening until game is restarted #cheapfix
             timer = 1000;
         }
     };
 
+    // reset button to start game over on the end game page
     $("#reset").on("click", function() {
         $(this).remove();
         $(".game").show();
@@ -210,7 +212,6 @@ $(document).ready(function(){
             unanswered++;
             imageNoAnswer();
         }
-        console.log(timer);
     };
 
     // function to decrease the time down by 1 second, will begin to run once start is clicked

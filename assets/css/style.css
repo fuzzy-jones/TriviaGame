@@ -10,6 +10,7 @@ body {
 .container {
     background-color: white;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding-top: 20px;
     text-align: center;
     padding-bottom: 25px;
@@ -18,7 +19,7 @@ body {
 
 #header {
     font-size: 84px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-family: myFirstFont;
 }
 
