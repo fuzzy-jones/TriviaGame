@@ -60,7 +60,7 @@ $(document).ready(function(){
     
     // image array and result response array
     var imageArray = ["<img src=assets/images/sleepy-hollow.gif>", "<img src=assets/images/american-beauty.gif>", "<img src=assets/images/brazil.gif>", "<img src=assets/images/karachi.jpg>", "<img src=assets/images/jupiter-moons.gif>", "<img src=assets/images/peewee.gif>", "<img src=assets/images/kfc-japan.jpg>", "<img src=assets/images/tootsiepop.gif>"];
-    var result = ["That is Correct!", "Whoops that's Incorrect!", "Why no Answer???"];
+    var result = ["That is Correct!", "Whoops That's Incorrect!", "Why no Answer???"];
 
     // global variables
     var timer = 20;
@@ -120,6 +120,7 @@ $(document).ready(function(){
         $("#image").html(imageArray[imageCounter]);
         timer = 24;
         setTimeout(newQuestion, 4000);
+        setTimeout(endGame, 4000);  
     };
 
     // Image page is timer runs out with no answer selected
@@ -130,6 +131,7 @@ $(document).ready(function(){
         $("#image").html(imageArray[imageCounter]);
         timer = 24;
         setTimeout(newQuestion, 4000);
+        setTimeout(endGame, 4000);  
     };
 
        
@@ -174,14 +176,31 @@ $(document).ready(function(){
         }
     });
 
+    // final results of the game
     function endGame() {
         if (questionCounter > 7) {
             $(".game").hide();
             $(".image-page").hide();
             $(".end-game").show();
             $("#score").html("Correct Answers: " + answersRight + "<br>" + "Incorrect Answers: " + answersWrong + "<br>" + "Unanswered: " + unanswered);
+            timer = 1000;
         }
     };
+
+    $("#reset").on("click", function() {
+        $(this).remove();
+        $(".game").show();
+        $(".end-game").hide();
+        timer = 20;
+        answersRight = 0;
+        answersWrong = 0;
+        unanswered = 0;
+        questionCounter = 0;
+        imageCounter = 0;
+        countdown();
+        gameQuestions();
+    });
+
 
     // countdown function for the question timer to run from 20 seconds down to 0
     function countdown() {

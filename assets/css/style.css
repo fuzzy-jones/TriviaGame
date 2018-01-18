@@ -12,7 +12,7 @@ body {
     margin-top: 20px;
     padding-top: 20px;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     border: 2px solid black;
 }
 
@@ -56,5 +56,23 @@ body {
     font-size: 32px;
     font-weight: bold;
     padding-bottom: 20px;
+}
+
+#image {
+    padding-bottom: 5px;
+}
+
+#reset {
+    background-color: lightcyan;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 10px 60px 10px 60px;
+    border: 2px solid black;
+}
+
+#the-end {
+    font-size: 36px;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 
