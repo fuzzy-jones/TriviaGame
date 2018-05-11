@@ -59,7 +59,7 @@ $(document).ready(function(){
     }];
     
     // image array and result response array
-    var imageArray = ["<img src=assets/images/sleepy-hollow.gif>", "<img src=assets/images/american-beauty.gif>", "<img src=assets/images/brazil.gif>", "<img src=assets/images/karachi.jpg>", "<img src=assets/images/jupiter-moons.gif>", "<img src=assets/images/peewee.gif>", "<img src=assets/images/kfc-japan.jpg>", "<img src=assets/images/tootsiepop.gif>"];
+    var imageArray = ["<img class='img-responsive' src=assets/images/sleepy-hollow.gif>", "<img class='img-responsive' src=assets/images/american-beauty.gif>", "<img class='img-responsive' src=assets/images/brazil.gif>", "<img class='img-responsive' src=assets/images/karachi.jpg>", "<img class='img-responsive' src=assets/images/jupiter-moons.gif>", "<img class='img-responsive' src=assets/images/peewee.gif>", "<img class='img-responsive' src=assets/images/kfc-japan.jpg>", "<img class='img-responsive' src=assets/images/tootsiepop.gif>"];
     var result = ["That is Correct!", "Whoops That's Incorrect!", "Why no Answer???"];
 
     // global variables

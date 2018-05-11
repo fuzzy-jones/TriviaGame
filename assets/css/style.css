@@ -63,6 +63,10 @@ body {
     padding-bottom: 5px;
 }
 
+#image .img-responsive {
+    margin: 0 auto;
+}
+
 #reset {
     background-color: lightcyan;
     font-size: 48px;
